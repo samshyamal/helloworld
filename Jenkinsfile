@@ -24,5 +24,22 @@ pipeline {
       }
     }
 
+    stage('second stage') {
+      parallel {
+        stage('second stage') {
+          steps {
+            echo 'stage2'
+          }
+        }
+
+        stage('') {
+          steps {
+            archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
+          }
+        }
+
+      }
+    }
+
   }
 }
